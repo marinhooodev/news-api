@@ -1,8 +1,8 @@
 <template>
-    <header>
+    <header class="fixed w-full z-30 backdrop-blur border-b border-gray-400 shadow-2xl">
         <div class="w-full flex justify-between items-center px-8 py-2">
-            <img src="@/assets/img/news.png" alt="Logo" class="max-w-[60px] drop-shadow-sm">
-            <i class="fa fa-bars text-4xl text-black"></i>
+            <div class="flex items-center gap-2 "><img src="@/assets/img/news.png" alt="Logo" class="max-w-[50px] drop-shadow-sm"> <span class="text-2xl">News</span></div>
+            <i class="fa fa-bars text-3xl"></i>
         </div>
     </header>
 </template>
@@ -13,7 +13,7 @@
 
 <style scoped lang="scss">
 header {
+background: rgba(black, 0.5)
 
-background: rgba(white, 1);
 }
 </style>
