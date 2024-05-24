@@ -1,0 +1,21 @@
+
+@layer tailwind-base, primevue, tailwind-utilities;
+
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer tailwind-utilities {
+    @tailwind components;
+    @tailwind utilities;
+}
+
+
+
+body {
+    background: url(@/assets/img/bricks-bg.svg);
+}
+
+.p-button {
+    font-size: 0.875rem;
+}
