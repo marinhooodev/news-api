@@ -9,7 +9,7 @@
       </div>
 
       
-        <Message severity="success" v-if="successfulRegister" class="w-full text-sm" :closable="false">Successfully Registered!</Message>
+        <Message severity="success" v-if="successfulRegister" class="w-full text-sm" :closable="false">Successfully Registered! You will be redirected in a few seconds!</Message>
         <Message severity="warn" v-if="emptyInputs" class="w-full text-sm" :closable="false">There are empty inputs!</Message>
         <Message severity="error" v-if="error" class="w-full text-sm" :closable="false">{{ errorMessage }} </Message>
   
@@ -37,8 +37,6 @@
       </div>
     </div>
   </div>
-
-  <Toast />
 </template>
 
 <script setup lang="ts">
@@ -47,13 +45,13 @@ import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import Message from "primevue/message";
 import Password from "primevue/password";
-import Toast from "primevue/toast";
-import { useToast } from "primevue/usetoast";
+
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 // UTILS
 const loading = ref<boolean>(false)
-const toast = useToast()
+const router = useRouter()
 
 // INPUTS
 const username = ref<string>("")
@@ -68,7 +66,7 @@ const error = ref<boolean>(false)
 const errorMessage = ref<string>("")
 
 const registerUser = async () => {
-    emptyInputs.value
+    emptyInputs.value = false
 
     if(!username.value) {
         emptyInputs.value = true
@@ -82,6 +80,10 @@ const registerUser = async () => {
     })
     .then((res) => {
         successfulRegister.value = true
+        setTimeout(() => {
+
+          router.push("/login")
+        }, 2000)
     })
     .catch((err) => {
         errorMessage.value = err
