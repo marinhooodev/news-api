@@ -1,6 +1,6 @@
 <template>
   <div id="mainContainer">
-    <slot></slot>
+    <slot class="block"></slot>
   </div>
 </template>
 
@@ -10,7 +10,10 @@
 #mainContainer {
     display: flex;
     flex-direction: column;
-    min-height: calc(100dvh - 50px);
-    @apply max-w-screen-lg w-full flex justify-center mx-auto
-}
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    padding-top: 70px; // Header Height
+    @apply max-w-[90vw] sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg w-full mx-auto
+} 
 </style>

@@ -11,9 +11,35 @@
 }
 
 
-
 body {
-    background: url(@/assets/img/bricks-bg.svg);
+    background: url(@/assets/img/constellation-bg.svg);
+    background-position: center;
+    background-size: 30%;
+    animation: bgScale 30s infinite linear ;
+
+    h1 {
+        @apply text-4xl
+    }
+    h2 {
+        @apply text-3xl
+    }
+    h3 {
+        @apply text-2xl
+    }
+}
+
+@keyframes bgScale {
+   0% {
+    background-size: 35%;
+   }
+
+   50% {
+    background-size: 45%;
+   }
+
+    100% {
+        background-size: 35%;
+    }
 }
 
 .p-button {
