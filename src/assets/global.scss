@@ -10,12 +10,12 @@
     @tailwind utilities;
 }
 
-
 body {
     background: url(@/assets/img/constellation-bg.svg);
     background-position: center;
     background-size: 30%;
     animation: bgScale 30s infinite linear ;
+    
 
     h1 {
         @apply text-4xl
@@ -44,4 +44,14 @@ body {
 
 .p-button {
     font-size: 0.875rem;
+}
+
+p {
+    text-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+    .p-toast {
+        width: 18rem;
+    }
 }
