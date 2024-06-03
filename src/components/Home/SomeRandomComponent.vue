@@ -1,76 +1,20 @@
 <template>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
-  <Button label="marinho" class="m-4"></Button>
+  <div id="banner">
+      <img src="" alt="">
+  </div>
+  <MainContainer>
+    
+      
+    
+  </MainContainer>
 </template>
 
 <script setup lang="ts">
-import { api } from '@/plugins/axios';
-import Button from 'primevue/button';
-import { RouterLink } from 'vue-router';
+import MainContainer from '../MainContainer.vue';
 
 
 </script>
 
 <style scoped>
-
+  
 </style>
