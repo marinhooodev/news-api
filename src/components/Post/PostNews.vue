@@ -19,7 +19,7 @@
       </div>
       <div class="mb-2">
         <label for="" class="pb-2 block">News Banner:</label>
-        <input type="file" name="image" id="image" class="w-full text-sm p-inputtext" ref="postImage"
+        <input type="file" name="image" id="image" class="w-full text-sm p-inputtext" ref="postImage">
       </div>
 
 
