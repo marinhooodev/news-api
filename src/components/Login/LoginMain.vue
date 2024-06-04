@@ -3,6 +3,8 @@
       <div id="signupBox"
         class="p-8 border border-gray-500 rounded-md  flex flex-col justify-center items-stretch gap-4"
       >
+      
+
         <div>
             <small>welcome back again!</small>
             <h2>Login</h2>
@@ -21,7 +23,7 @@
         </div>
         <div class="flex flex-col items-stretch justify-center my-1">
           <label for="password">Password: </label>
-          <Password input-id="password" v-model="password" input-class="text-sm w-full"  :feedback="false" toggleMask/>
+          <Password input-id="password" v-model="password" input-class="text-sm w-full"  :feedback="false" toggleMask @keyup.enter="registerUser" />
         </div>
 
   
@@ -30,6 +32,8 @@
         </div>
       </div>
     </div>
+
+ 
   
     <Toast />
   </template>
@@ -45,12 +49,13 @@
   import { ref } from "vue";
   import Cookies from 'js-cookie';
 import { useRouter } from "vue-router";
+import { getUserData} from "@/services";
 
   // UTILS
   const loading = ref<boolean>(false)
   const toast = useToast()
   const router = useRouter()
-  
+  const userData = ref()
   // INPUTS
   const email = ref<string>("")
   const password = ref<string>("")
@@ -74,9 +79,13 @@ import { useRouter } from "vue-router";
           email: email.value,
           password: password.value
       })
-      .then((res) => {
+      .then(async (res) => {
+          console.log(res.data)
           Cookies.set("auth_token", res.data.token, {expires: 7})
-
+          
+          await getUserData()
+          
+          userData.value = Cookies.get("name")
           router.push("/")
       })
       .catch((err) => {
