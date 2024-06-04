@@ -43,10 +43,13 @@
   import Toast from "primevue/toast";
   import { useToast } from "primevue/usetoast";
   import { ref } from "vue";
-  
+  import Cookies from 'js-cookie';
+import { useRouter } from "vue-router";
+
   // UTILS
   const loading = ref<boolean>(false)
   const toast = useToast()
+  const router = useRouter()
   
   // INPUTS
   const email = ref<string>("")
@@ -64,13 +67,17 @@
           emptyInputs.value = true
           return
       }
-  
+      
+      loading.value = true
+
       await api.post("/login", {
           email: email.value,
           password: password.value
       })
       .then((res) => {
-          
+          Cookies.set("auth_token", res.data.token, {expires: 7})
+
+          router.push("/")
       })
       .catch((err) => {
           errorMessage.value = err
