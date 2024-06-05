@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full my-auto flex flex-col items-center justify-center py-10 mx-auto ">
+  <div
+    class="w-full my-auto flex flex-col items-center justify-center py-10 mx-auto"
+  >
     <div
       id="signupBox"
       class="p-8 border border-gray-500 rounded-md flex flex-col justify-center items-stretch gap-4"
@@ -8,35 +10,44 @@
         <small>Post news to public!</small>
         <h2>Create News</h2>
       </div>
+      <form @submit.prevent="sendPost" ref="newsForm">
+        <div class="mb-2">
+          <label for="" class="pb-2 block">News Title:</label>
+          <InputText
+            v-model="postTitle"
+            placeholder="Something happened in..."
+            class="w-full"
+            name="title"
+            id="title"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="" class="pb-2 block">News Banner:</label>
+          
+            <input
+              type="file"
+              name="image"
+              id="image"
+              class="w-full text-sm p-inputtext"
+              ref="postImage"
+            />
 
-      <div class="mb-2">
-        <label for="" class="pb-2 block">News Title:</label>
-        <InputText
-          v-model="postTitle"
-          placeholder="Something happened in..."
-          class="w-full"
-        />
-      </div>
-      <div class="mb-2">
-        <label for="" class="pb-2 block">News Banner:</label>
-        <input type="file" name="image" id="image" class="w-full text-sm p-inputtext" ref="postImage">
-      </div>
+        </div>
 
+        <div class="w-full">
+          <label for="" class="pb-2 block">News Content:</label>
+          <Editor v-model="postContent" editorStyle="height: 320px" />
+        </div>
 
-
-      <div class="w-full">
-        <label for="" class="pb-2 block">News Content:</label>
-        <Editor v-model="postContent" editorStyle="height: 320px" />
-      </div>
-
-      <div class="flex justify-end w-full mt-2">
-        <Button
-          label="Preview and Post"
-          :loading="loading"
-          @click="visible = true"
-          :disabled=" postTitle.length <= 0 || postContent.length <= 0 "
-        ></Button>
-      </div>
+        <div class="flex justify-end w-full mt-2">
+          <Button
+            label="Preview and Post"
+            :loading="loading"
+            @click="visible = true"
+            :disabled="postTitle.length <= 0 || postContent.length <= 0"
+          ></Button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -64,8 +75,13 @@
           severity="secondary"
           @click="visible = false"
           autofocus
-        />
-        <Button label="Post" @click="visible = false" autofocus />
+        ></Button>
+        <Button
+          label="Post"
+          @click="newsForm?.requestSubmit(), (visible = false)"
+          autofocus
+        >
+        </Button>
       </div>
     </template>
   </Dialog>
@@ -73,12 +89,12 @@
 
 <script setup lang="ts">
 import { api } from "@/plugins/axios";
+import Cookies from "js-cookie";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Editor from "primevue/editor";
-import FileUpload from "primevue/fileupload";
 import InputText from "primevue/inputtext";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const postContent = ref<string>("");
 const postTitle = ref<string>("");
@@ -88,18 +104,28 @@ const imageInput = ref<HTMLInputElement | null>(null)
 const visible = ref<boolean>(false);
 const loading = ref<boolean>(false);
 
-const sendPost = async () => {
-  try {
-    await api.post("/news", {
-      hat: "",
-      title: postTitle.value,
-      content: postContent.value,
-      author: "Zé da Manga",
-    });
-  } catch (error) {
+const newsForm = ref<HTMLFormElement | null>(null)
+const sendPost = async (e: Event) => {
+  e.preventDefault();  
 
+  if (newsForm.value == null) {
+      return
+  }
+
+  const formdata = new FormData(newsForm.value) 
+
+    formdata.append("hat", "Some hat");
+    formdata.append("content", postContent.value)
+    formdata.append("author", `${Cookies.get("author")}`);
+
+  try {
+    await api.post("/news", formdata);
+  } catch (error) {
+    
   }
 };
+
+onMounted(() => console.log(newsForm))
 </script>
 
 <style scoped>

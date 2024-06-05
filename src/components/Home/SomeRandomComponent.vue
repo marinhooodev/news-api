@@ -4,8 +4,12 @@
   </div>
   <MainContainer>
     {{ token }}
-    <div v-for="item in list" :key="item.id" class="border border-slate-300 bg-slate-400 p-5">
-      <img :src="item.image" alt="" class="max-w-[200px]">
+    <div v-for="post in newsList" :key="post._id" class="newsCard border border-slate-300 p-5">
+      <router-link :to="'/news/' + post._id">
+        <img :src="'https://api-ts-node.onrender.com/uploads/' + post.image" alt="" class="max-w-[200px]">
+        <h3>{{post.title}}</h3>
+        <p v-html="post.content"></p>
+      </router-link>
     </div>
   </MainContainer>
 </template>
@@ -15,14 +19,15 @@ import { getToken } from "@/token";
 import MainContainer from "../MainContainer.vue";
 import { api } from "@/plugins/axios";
 import { onMounted, ref } from "vue";
+import type IPost from "@/interfaces/IPost";
 
 const token = getToken();
-const list = ref([])
+const newsList = ref<IPost[]>([])
 
 
 const getNews = async () => {
 await api.get("news").then((res) => {
-  list.value = res.data
+  newsList.value = res.data
   console.log(res.data)
 })
 
@@ -33,4 +38,9 @@ onMounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.newsCard {
+  background: #ffffff23;
+  backdrop-filter: blur(2px);
+}
+</style>
