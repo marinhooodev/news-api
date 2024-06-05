@@ -1,10 +1,9 @@
 <template>
   <!-- Header  Icon -->
-  <i class="fa fa-bars" @click="visible = !visible"></i>
+  <i class="fa fa-bars text-2xl" @click="visible = !visible"></i>
 
   <Sidebar
     v-model:visible="visible"
-    header="Welcome"
     position="right"
     id="sidebar"
     class="backdrop-blur"
@@ -28,7 +27,7 @@
           News
         </router-link>
         <router-link
-          to="/"
+          to="/post"
           class="flex items-center justify-start gap-2 p-3 rounded-xl mb-3 last-of-type:mb-0"
           @click="visible = !visible"
         >
@@ -53,18 +52,18 @@
         </router-link>
       </div>
       <div class="flex flex-col w-full">
-        <div class="flex justify-around mb-2">
+        <div class="flex justify-between mb-2">
+            <router-link to="/sign-up">
+              <Button
+                label="Create an Account"
+                link
+                class="text-gray-400"
+                @click="visible = !visible"
+              ></Button>
+            </router-link>
           <router-link to="/login">
             <Button
               label="Log-in"
-              link
-              class="text-gray-400"
-              @click="visible = !visible"
-            ></Button>
-          </router-link>
-          <router-link to="/sign-up">
-            <Button
-              label="Create an Account"
               link
               class="text-gray-400"
               @click="visible = !visible"
